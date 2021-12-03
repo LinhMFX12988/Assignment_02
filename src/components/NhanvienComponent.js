@@ -47,19 +47,20 @@ class Nhanvien extends Component {
 
     return (
       <div className="container">
-        <div className="col">
-          <nav class="navbar navbar-light bg-light">
-            <div class="container-fluid">
-              <a class="navbar-brand"></a>
-              <form class="d-flex">
-                <input class="form-control me-2" type="text" placeholder="Search..." onChange={this.onChange} />
-                <button class="btn btn-outline-success" type="button" onClick={this.handelSearch}>GO!</button>
-              </form>
-            </div>
-          </nav>
-        </div>
-        <div className="col-12">          
+        <hr />
+        <div className="col-12">
           <h1 className="text-center">Nhân Viên</h1>
+          <div className="col">
+            <nav class="navbar navbar-light bg-light">
+              <div class="container-fluid">
+                <a class="navbar-brand"></a>
+                <form class="d-flex">
+                  <input class="form-control me-2" type="search" placeholder="Search..." onChange={this.onChange} />
+                  <button class="btn btn-outline-dark" type="button" onClick={this.handelSearch}>GO!</button>
+                </form>
+              </div>
+            </nav>
+          </div>
           <hr />
           <div className="row">{nvien}</div>
           <hr />
