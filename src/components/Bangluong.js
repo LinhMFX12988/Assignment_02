@@ -15,15 +15,41 @@ class Bangluong extends Component {
     }
 
     onSortChangeId = () => {
-        this.setState({ 
-            staffs: STAFFS.sort((a,b) =>  b.id - a.id)                    
-        })             
+        const { currentSort } = this.state;
+		let nextSort;
+		
+		if(currentSort === 'down') { 
+            nextSort = 'up'; 
+            this.setState({staffs: STAFFS.sort((a,b) => b.id - a.id)})}
+		else if(currentSort === 'up') {
+            nextSort = 'default'; 
+            this.setState({staffs: STAFFS.sort((a,b) => a.id- b.id)})}
+		else { 
+            nextSort = 'down'; this.setState((a) => a) 
+        }
+		
+		this.setState({
+			currentSort: nextSort
+		})         
     }
 
     onSortChangeMoney = () => {
-        this.setState({ 
-            staffs: STAFFS.sort((a,b) =>  a.overTime - b.overTime)                    
-        }) 
+        const { currentSort } = this.state;
+		let nextSort;
+		
+		if(currentSort === 'down') { 
+            nextSort = 'up'; 
+            this.setState({staffs: STAFFS.sort((a,b) => b.overTime - a.overTime)})}
+		else if(currentSort === 'up') {
+            nextSort = 'default'; 
+            this.setState({staffs: STAFFS.sort((a,b) => a.overTime- b.overTime)})}
+		else { 
+            nextSort = 'down'; this.setState((a) => a) 
+        }
+		
+		this.setState({
+			currentSort: nextSort
+		})     
     }
 
     render() {
@@ -81,14 +107,14 @@ class Bangluong extends Component {
                             onClick={this.onSortChangeMoney}                             
                             className="btn btn-outline-dark btn-sm">
                                 Lương 
-                        <i className="fa fa-sort"></i>
+                        <i onClick={this.onSortChangeId} className="fa fa-sort"></i>
                     </button>
                     <button style={{ margin: 5, float: "right" }} 
                             type="button"
                             onClick={this.onSortChangeId}
                             className="btn btn-outline-dark btn-sm">
                         Mã NV 
-                        <i className="fa fa-sort"></i>
+                        <i onClick={this.onSortChangeId} className="fa fa-sort"></i>
                     </button>
                     <br /><br /><hr />
                     <div className="row">{nvien}</div>

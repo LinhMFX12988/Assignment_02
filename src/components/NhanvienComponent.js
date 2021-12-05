@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Card, CardImg, CardTitle, CardBody } from "reactstrap";
+import { Card, CardImg, CardTitle } from "reactstrap";
 import { Link } from 'react-router-dom';
 import { STAFFS } from "../shared/staffs";
 
@@ -53,7 +53,7 @@ class Nhanvien extends Component {
           <div className="col">
             <nav class="navbar navbar-light bg-light">
               <div class="container-fluid">
-                <a class="navbar-brand"></a>
+                <div></div>
                 <form class="d-flex">
                   <input class="form-control me-2" type="search" placeholder="Search..." onChange={this.onChange} />
                   <button class="btn btn-outline-dark" type="button" onClick={this.handelSearch}>GO!</button>
