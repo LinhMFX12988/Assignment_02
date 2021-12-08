@@ -55,8 +55,6 @@ class Bangluong extends Component {
     render() {
         const RenderBangLuong = ({ staff }) => {
 
-            const Tongluong = (lcb, glt, hsl) => lcb + glt * hsl
-
             return (
                 <Card className="text-center"
                     style={{
@@ -74,7 +72,7 @@ class Bangluong extends Component {
                             border: "1px solid rgb(112, 112, 112)"
                         }}>
                             <CardTitle>
-                                Lương: {Tongluong(3000000, 200000, staff.overTime)} đ
+                                Lương: {3000000 + staff.overTime*200000} đ
                             </CardTitle>
                         </Card>
                     </CardBody>
