@@ -13,7 +13,7 @@ function App() {
   const [staff, setStaff] = useState(STAFFS);
   const [department] = useState(DEPARTMENTS);
 
-  //-------------------Add Staff---------------------
+  //-------------------Add Staff--------------------
   const addStaff = (newStaff) => {
     let newStaffs = staff.concat([{
       ...newStaff,
@@ -40,7 +40,7 @@ function App() {
           <Route exact path="/staffs" component={() => <StaffList staffs={staff} addStaff={addStaff} />} />
           <Route path="/staffs/:id" component={renderDetailStaff} />
           <Route path="/department" component={() => <Department departments={department} />} />
-          <Route path="/salary" component={() => <Salary salarys={staff} />} />
+          <Route path="/salary" component={() => <Salary salary={staff} />} />
           <Redirect to="/staffs" />
         </Switch>
         <Footer />

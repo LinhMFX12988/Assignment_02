@@ -1,15 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 import { Card, Breadcrumb, BreadcrumbItem, CardBody, CardText, CardTitle } from "reactstrap";
 import { Link } from 'react-router-dom';
 
 function Salary(props) {
+    const [onSort, setOnSort] = useState(props.salary)
+    console.log('sort:', onSort)
 
-    const renderSalary = props.salarys.map((salary) => {
+    //-------------------Sort ID----------------------
+    const onSortChangeId = (e) => {
+        let nextSort;
+
+        if( e === 'down') {
+            nextSort = 'up';
+            setOnSort(onSort.sort((a,b) => b.id - a.id))
+        }
+        else if(e === 'up') {
+            nextSort = 'default';
+            setOnSort(onSort.sort((a,b) => a.id - b.id))
+        }
+        else {
+            nextSort = 'down'; 
+            setOnSort((a) => a) 
+        }
+        setOnSort(nextSort)
+    }
+
+    const renderSalary = props.salary.map((salary) => {
         return (
             <div key={salary.id} className="col-12 col-md-6 col-lg-4">
                 <Card className="text-center"
                     style={{
-                        backgroundColor: "#e6dff5",
+                        backgroundColor: "#c0bdc4",
                         border: "1px solid rgb(112, 112, 112)"
                     }}>
                     <h2> {salary.name}</h2><hr />
@@ -44,7 +65,25 @@ function Salary(props) {
             </div>
             <div className="col-12">
                 <h1 className="text-center">Bảng Lương</h1>
-                <br />
+
+                {/*******Button Sort Salary******/}
+                <button style={{ margin: 5, float: "right" }}
+                    type="button"
+
+                    className="btn btn-outline-dark btn-sm col-4 col-md-2 col-lg-1">
+                    Lương
+                    <i className="fa fa-sort"></i>
+                </button>
+
+                {/*******Button Sort ID******/}
+                <button style={{ margin: 5, float: "right" }}
+                    type="button"
+                    onClick={() => onSortChangeId('down')}
+                    className="btn btn-outline-dark btn-sm col-4 col-md-2 col-lg-1">
+                    Mã NV
+                    <i onClick={() => onSortChangeId('down')} className="fa fa-sort"></i>
+                </button>
+                <br /><br />
                 <div className="row">{renderSalary}</div>
             </div>
         </div>

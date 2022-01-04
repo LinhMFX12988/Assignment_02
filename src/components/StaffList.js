@@ -136,7 +136,7 @@ function StaffList(props) {
                           model=".doB"
                           show="touched"
                           messages={{
-                            required: "Yêu cầu bắt buộc ",
+                            required: "Yêu cầu nhập !",
                           }}
                         />
                       </Col>
@@ -162,7 +162,7 @@ function StaffList(props) {
                           model=".startDate"
                           show="touched"
                           messages={{
-                            required: "Yêu cầu bắt buộc ",
+                            required: "Yêu cầu nhập !",
                           }}
                         />
                       </Col>
