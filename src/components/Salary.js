@@ -19,8 +19,8 @@ function Salary(props) {
             setOnSort(onSort.sort((a,b) => a.id - b.id))
         }
         else {
-            nextSort = 'down'; 
-            setOnSort((a) => a) 
+            nextSort = 'down';
+            setOnSort((a) => a)
         }
         setOnSort(nextSort)
     }
@@ -81,7 +81,7 @@ function Salary(props) {
                     onClick={() => onSortChangeId('down')}
                     className="btn btn-outline-dark btn-sm col-4 col-md-2 col-lg-1">
                     Mã NV
-                    <i onClick={() => onSortChangeId('down')} className="fa fa-sort"></i>
+                    <i className="fa fa-sort"></i>
                 </button>
                 <br /><br />
                 <div className="row">{renderSalary}</div>
