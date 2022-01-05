@@ -4,28 +4,37 @@ import { Link } from 'react-router-dom';
 
 function Salary(props) {
     const [onSort, setOnSort] = useState(props.salary)
-    console.log('sort:', onSort)
+    const [sortDown, setSortDown] = useState(true)
 
     //-------------------Sort ID----------------------
-    const onSortChangeId = (e) => {
-        let nextSort;
-
-        if( e === 'down') {
-            nextSort = 'up';
-            setOnSort(onSort.sort((a,b) => b.id - a.id))
+    const onSortChangeId = () => {
+        const copyStaffId = [...onSort]
+        
+        if (sortDown) {
+            copyStaffId.sort((a,b) =>  b.id - a.id)
+        } else {
+            copyStaffId.sort((a,b) =>  a.id - b.id)         
         }
-        else if(e === 'up') {
-            nextSort = 'default';
-            setOnSort(onSort.sort((a,b) => a.id - b.id))
-        }
-        else {
-            nextSort = 'down';
-            setOnSort((a) => a)
-        }
-        setOnSort(nextSort)
+        
+        setSortDown(!sortDown);
+        setOnSort(copyStaffId);
     }
 
-    const renderSalary = props.salary.map((salary) => {
+    //-------------------Sort Salary----------------------
+    const onSortChangeSalary = () => {
+        const copyStaffId = [...onSort]
+        
+        if (sortDown) {
+            copyStaffId.sort((a,b) =>  b.overTime - a.overTime)
+        } else {
+            copyStaffId.sort((a,b) =>  a.overTime - b.overTime)         
+        }
+        
+        setSortDown(!sortDown);
+        setOnSort(copyStaffId);
+    }
+
+    const renderSalary = onSort.map((salary) => {
         return (
             <div key={salary.id} className="col-12 col-md-6 col-lg-4">
                 <Card className="text-center"
@@ -69,7 +78,7 @@ function Salary(props) {
                 {/*******Button Sort Salary******/}
                 <button style={{ margin: 5, float: "right" }}
                     type="button"
-
+                    onClick={onSortChangeSalary}
                     className="btn btn-outline-dark btn-sm col-4 col-md-2 col-lg-1">
                     Lương
                     <i className="fa fa-sort"></i>
@@ -78,7 +87,7 @@ function Salary(props) {
                 {/*******Button Sort ID******/}
                 <button style={{ margin: 5, float: "right" }}
                     type="button"
-                    onClick={() => onSortChangeId('down')}
+                    onClick={onSortChangeId}
                     className="btn btn-outline-dark btn-sm col-4 col-md-2 col-lg-1">
                     Mã NV
                     <i className="fa fa-sort"></i>
